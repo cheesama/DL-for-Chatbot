@@ -39,14 +39,14 @@ def get_config(parse=True, **optional_kwargs):
     parser = argparse.ArgumentParser()
 
     #================ Train ==============#
-    parser.add_argument('--batch_size', type=int, default=100)
+    parser.add_argument('--batch_size', type=int, default=8192)
     parser.add_argument('--lr', type=int, default=1e-3)
-    parser.add_argument('--optimizer', type=str, default='sgd')
-    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--optimizer', type=str, default='adam')
+    parser.add_argument('--epochs', type=int, default=100)
 
     #================ Model ==============#
-    parser.add_argument('--hidden_size', type=int, default=300)
-    parser.add_argument('--n_channel_per_window', type=int, default=2)
+    parser.add_argument('--hidden_size', type=int, default=400)
+    parser.add_argument('--n_channel_per_window', type=int, default=4)
     parser.add_argument('--label_size', type=int, default=2)
     parser.add_argument('--vocab_size', type=int, default=20000)
     parser.add_argument('--dropout', type=float, default=0.5)

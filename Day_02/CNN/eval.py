@@ -14,5 +14,5 @@ if __name__ == '__main__':
 
     solver = Solver(config, data_loader)
     solver.build(is_train=False)
-    solver.load(epoch=2)
+    solver.load(epoch=1000)
     solver.eval()

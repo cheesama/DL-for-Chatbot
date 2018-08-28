@@ -18,10 +18,9 @@ def filter_pred(example):
 
 
 def get_loader(batch_size=100, max_size=20000, is_train=True, data_dir=None):
-
     text_field = data.Field(tokenize=tokenizer, sequential=True)
-    label_field = data.Field(sequential=False, use_vocab=False,
-                             postprocessing=data.Pipeline(postprocess))
+    #label_field = data.Field(sequential=False, use_vocab=False, postprocessing=data.Pipeline(postprocess))
+    label_field = data.Field(sequential=False, use_vocab=False)
 
     train_file_path = Path(data_dir).joinpath('naver_train.txt')
     test_file_path = Path(data_dir).joinpath('naver_test.txt')
@@ -63,12 +62,9 @@ def get_loader(batch_size=100, max_size=20000, is_train=True, data_dir=None):
             ],
             filter_pred=filter_pred)
 
-        loader = data.Iterator(
-            dataset=test_dataset,
-            batch_size=batch_size,
-            sort=False,
-            train=False,
-            device=-1)
+        loader = data.Iterator(dataset=test_dataset, batch_size=batch_size, sort=False, train=False, device=-1)
+
+    print (len(loader))
 
     return loader
 

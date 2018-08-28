@@ -14,6 +14,11 @@ class CNN(nn.Module):
             nn.Conv2d(
                 in_channels=1,
                 out_channels=config.n_channel_per_window,
+                kernel_size=(2, config.hidden_size)),
+
+            nn.Conv2d(
+                in_channels=1,
+                out_channels=config.n_channel_per_window,
                 kernel_size=(3, config.hidden_size)),
 
             nn.Conv2d(
@@ -24,7 +29,17 @@ class CNN(nn.Module):
             nn.Conv2d(
                 in_channels=1,
                 out_channels=config.n_channel_per_window,
-                kernel_size=(5, config.hidden_size))
+                kernel_size=(5, config.hidden_size)),
+
+            nn.Conv2d(
+                in_channels=1,
+                out_channels=config.n_channel_per_window,
+                kernel_size=(6, config.hidden_size)),
+
+            nn.Conv2d(
+                in_channels=1,
+                out_channels=config.n_channel_per_window,
+                kernel_size=(7, config.hidden_size))
         ])
 
         n_total_channels = len(self.conv) * config.n_channel_per_window
@@ -72,7 +87,7 @@ class CNN(nn.Module):
         out = torch.cat(out_list, 1)
 
         ######## Dropout ########
-        out = self.dropout(out)
+        #out = self.dropout(out)
 
         # [batch_size, label_size]
         logit = self.fc(out)
